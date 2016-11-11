@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery.grep demo</title>
+    <style>
+        div {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            float: left;
+            border: 2px white solid;
+        }
+    </style>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="jquery-ui.js"></script>
+</head>
+<body>
+<div></div>
+<div class="middle"></div>
+<div class="middle"></div>
+<div class="middle"></div>
+<div class="middle"></div>
+<div></div>
+
+<script>
+    $( "div" )
+            .css( "background", "#c8ebcc" )
+            .filter( ".middle" )
+            .css( "border-color", "red" );
+    $( "div" ).one({
+         click: function(event) {
+            alert( "clicked on a div" );
+            alert(event);
+        }
+    });
+</script>
+
+</body>
+</html>

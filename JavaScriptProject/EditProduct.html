@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <script src="dates.js"></script>
+    <script src="app.js"></script>
+    <script src="prodcutApp.js"></script>
+
+    <script>
+        window.onload = function () {
+            var item = sessionStorage.getItem("productId");
+            var data = new productApp.productRepository();
+            data.editProductByID(item);
+        }
+
+        function editSubmit() {
+            //alert("Here");
+            var name = document.getElementById("editName").value;
+            var price = document.getElementById("editPrice").value;
+            var info = document.getElementById("editInfo").value;
+            var editId = document.getElementById("editId").value;
+
+            var prodObj = new productApp.productRepository();
+            localStorage.setItem("editId",editId);
+            prodObj.editProduct(editId,name,price,info);
+        }
+    </script>
+    <style>
+        body{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        #container{
+            border:1px solid #000000;
+            border-radius:5px;
+            margin:5px;
+            padding:5px;
+
+        }
+        #pageHeader{
+            height:150px;
+            border:1px solid #c0ed96;
+            border-radius:10px;
+            margin:10px;
+            padding:10px;
+            background-color: #c0ed96;
+        }
+        #pageHeader #header h1{
+            text-align:center;
+            font-family:cursive;
+            font-style:italic;
+        }
+        #logo {
+            float: left;
+        }
+        #topMenu ul{
+            float:right;
+        }
+        #topMenu ul li {
+            display: inline;
+            list-style:none;
+        }
+        #pageSidebar{
+            float:left;
+            width:20%;
+            margin:10px;
+            padding:10px;
+            border:1px dotted #e29b10;
+            border-radius:10px;
+            min-height:500px;
+            background-color:#e29b10;
+        }
+
+        #mainContent{
+            float:right;
+            width:90%;
+            margin:10px;
+            padding:10px;
+            border:1px solid #b8e944;
+            border-radius:10px;
+            min-height:200px;
+            background-color:#b8e944;
+        }
+        #contents{
+
+        }
+        #mainContent #contentBoxEmpty {
+            width:35%;
+            min-height:50px;
+        }
+        #mainContent #contentBoxClose {
+            width:85%;
+            min-height:20px;
+            padding:10px;
+        }
+        #mainContent #contentBoxButton {
+            float: right;
+            background-color:darkslateblue;
+        }
+
+        #mainContent #contents fieldset {
+            width:35%;
+            margin:10px;
+            padding:10px;
+            border:1px solid #b8e944;
+            border-radius:10px;
+            min-height:200px;
+            background-color:darkgrey;
+        }
+        #clear {
+            clear: both;
+        }
+        #pageFooter{
+            border:1px solid #6f2484;
+            border-radius:10px;
+            margin:10px;
+            padding:10px;
+        }
+
+        #pageFooter footer {
+            text-align: center;
+        }
+
+        #passwordDiv {
+            margin: 5px;
+            padding:5px;
+        }
+        #userIdDiv {
+            margin: 5px;
+            padding:5px;
+        }
+        #contentHeader {
+            text-align: center;
+            font-family: "Arial Rounded MT Bold";
+            font-size: 30px;
+
+        }
+
+    </style>
+    <script type="text/javascript">
+
+
+    </script>
+</head>
+<body>
+<div id="container" style="border: 10px">
+    <section id="mainContent">
+        <section id="contentHeader">
+            <header>Product Details</header>
+        </section>
+        <section id="contentBoxEmpty">
+        </section>
+        <section id="contents">
+            <div id="viewTable"></div>
+        </section>
+        <section id="contentBoxClose">
+            <section id="contentBoxButton">
+                <div ><button onclick="editSubmit()">Submit</button></div>
+            </section>
+
+        </section>
+        <section id="clear"></section>
+
+</div>
+
+</body>
+</html>

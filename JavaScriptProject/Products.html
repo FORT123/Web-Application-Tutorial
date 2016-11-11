@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Joseph Profile</title>
+    <script src="dates.js"></script>
+    <script src="app.js"></script>
+    <script src="prodcutApp.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function viewPage(id) {
+            sessionStorage.setItem("productId", id);
+           //window.open("ViewProduct.html", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+            window.open("ViewProduct.html","_blank","scrollbars=no,top=200,left=400,width=600,height=300");
+        }
+
+        function editPage(id) {
+            sessionStorage.setItem("productId", id);
+            window.open("EditProduct.html","_blank","scrollbars=no,top=200,left=300,width=800,height=300");
+        }
+
+        function  addProduct() {
+            //alert("Here");
+            var name = document.getElementById("productName").value;
+            var price = document.getElementById("productPrice").value;
+            var info = document.getElementById("productInfo").value;
+            document.getElementById("productName").value = "";
+            document.getElementById("productPrice").value = "";
+            document.getElementById("productInfo").value = "";
+
+            var prodObj = new productApp.productRepository();
+            prodObj.addProduct(name,price,info);
+        }
+
+        function getInfo() {
+            var name = document.getElementById("txtName").value;
+            document.getElementById("message").innerHTML = "<h1>Welcome " + name + " !!!</h1> ";
+        }
+
+        function deleteProduct(id) {
+            var prodObj = new productApp.productRepository();
+            prodObj.deleteProduct(id);
+        }
+
+
+
+        function getProductInfo() {
+
+            var prodObj = new  productApp.productRepository();
+            prodObj.getProductInfo();
+        }
+        function getSearchProductInfo() {
+            var name = document.getElementById("searchName").value;
+            var prodObj = new  productApp.productRepository();
+            var data = prodObj.data;
+            var table = "<table border='1' bgcolor='#b8e944'><tr><th>Id</th><th>Name</th><th>Price</th><th>Action</th></tr>";
+            data.forEach(function (entry) {
+                if(entry.name==name) {
+                var tr = "<tr><td>" + entry.Id + "</td><td>" + entry.name + "</td><td>" + entry.price + "</td><td><a href='javascript:void(0)' onclick=editPage('"+entry.Id+"')>Edit</a>|<a href='javascript:void(0)' onclick=viewPage('"+entry.name+"')>View</a>|<a href=''>Delete</a></td></tr>";
+                table += tr;
+                }
+            });
+            table += "</table>";
+            document.getElementById("searchGrid").innerHTML = table;
+        }
+
+
+    </script>
+    <style>
+        body{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        #container{
+            border:1px solid #000000;
+            border-radius:5px;
+            margin:5px;
+            padding:5px;
+
+        }
+        #pageHeader{
+            height:150px;
+            border:1px solid #c0ed96;
+            border-radius:10px;
+            margin:10px;
+            padding:10px;
+            background-color: #c0ed96;
+        }
+        #pageHeader #header h1{
+            text-align:center;
+            font-family:cursive;
+            font-style:italic;
+        }
+        #logo {
+            float: left;
+        }
+        #topMenu ul{
+            float:right;
+        }
+        #topMenu ul li {
+            display: inline;
+            list-style:none;
+        }
+        #pageSidebar{
+            float:left;
+            width:20%;
+            margin:10px;
+            padding:10px;
+            border:1px dotted #e29b10;
+            border-radius:10px;
+            min-height:500px;
+            background-color:#e29b10;
+        }
+        #searchSec{
+            float:left;
+            width:29%;
+            margin:10px;
+            padding:10px;
+            border:1px dotted #e29b10;
+            border-radius:10px;
+            min-height:400px;
+            background-color:darkgrey;
+        }
+
+        #addSec{
+            float:left;
+            width:25%;
+            margin:10px;
+            padding:10px;
+            border:1px dotted #e29b10;
+            border-radius:10px;
+            min-height:400px;
+            background-color:darkgrey;
+        }
+
+        #getProductSec{
+            float:left;
+            width:32%;
+            margin:10px;
+            padding:10px;
+            border:1px dotted #e29b10;
+            border-radius:10px;
+            min-height:400px;
+            background-color:darkgrey;
+        }
+
+        #mainContent{
+            float:right;
+            width:73%;
+            margin:10px;
+            padding:10px;
+            border:1px solid #b8e944;
+            border-radius:10px;
+            min-height:500px;
+            background-color:antiquewhite;
+
+        }
+        #contentHeader {
+            text-align: center;
+            font-family: "Britannic Bold";
+            font-size: 25px;
+
+        }
+        #clear {
+            clear: both;
+        }
+        #pageFooter{
+            border:1px solid #6f2484;
+            border-radius:10px;
+            margin:10px;
+            padding:10px;
+        }
+
+        #txtboxID {
+            float: left;
+            margin:10px;
+            padding:10px;
+        }
+
+        #buttonID {
+            float: left;
+            margin:5px;
+            padding:3px;
+        }
+
+        #buttonBack {
+            float: left;
+            margin:10px;
+            padding:10px;
+        }
+        #pageFooter footer {
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+
+
+    </script>
+</head>
+<body>
+<div id="container" style="border: 10px">
+    <section id="pageHeader" style="border: 10px">
+        <div id="logo">
+            <img src="Joshu%20Kuttan.jpg" alt="me" height="150px" width="150px"/>
+        </div>
+        <div id="header">
+            <header>
+                <h1>User</h1>
+            </header>
+        </div>
+        <nav id="topMenu">
+            <ul>
+                <li>
+                    <a href="Index.html">Home</a>
+                </li>
+                <li>
+                    <a href="Login.html">Login</a>
+                </li>
+                <li>
+                    <a href="Register.html">Register</a>
+                </li>
+                <li>
+                    <a href="Products.html">Products</a>
+                </li>
+                <li>
+                    <a href="About.html">About Us</a>
+                </li>
+                <li>
+                    <a href="Contact.html">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <section id="pageSidebar">
+        <div id="sideHeader">
+            <span><h2>Skills</h2></span>
+        </div>
+        <nav id="sideMenu">
+            <ul>
+                <li>
+                    <a href="Java.html">Java</a>
+                </li>
+                <li>
+                    <a href="Sql.html">SQL</a>
+                </li>
+                <li>
+                    <a href="JavaScript.html">HTML</a>
+                </li>
+            </ul>
+        </nav>
+
+    </section>
+    <section id="mainContent">
+        <section id="contentHeader">
+            <header>Products</header>
+        </section>
+
+            <section id="searchSec">
+                <div id="txtboxID">
+                    <label>Search:</label>
+                    <input type="text" id="searchName" name="searchName" />
+
+                </div>
+                <div id="buttonID">
+                    <button type="button"  onclick="getSearchProductInfo()">Search</button>
+                    <span id="searchGrid"></span>
+                </div>
+            </section>
+            <section id="addSec">
+                <div id="butttonAdd">
+                    <button type="button" onclick="goBack()">Add a Product</button>
+                </div>
+                <div>
+                    <fieldset>
+                <div id="addProduct">
+                    <label for="prodcutName">Name</label>
+                    <input type="text" id="productName" name="prodcutName" required/>
+                    <label for="price">Price</label>
+                    <input type="text" id="productPrice" name="price" required/>
+                    <label for="pInfo">Info</label>
+                    <input type="text" id="productInfo" name="pInfo"/>
+                </div>
+                <div id="addProduct">
+                    <button type="button" onclick="addProduct()">ADD</button>
+                </div>
+                    </fieldset>
+                </div>
+            </section>
+            <section id="getProductSec">
+                <div id="buttonID">
+                    <button type="button"  onclick="getProductInfo()">Get Products</button>
+                </div>
+                <div id="txtboxID">
+                    <br>
+                    <span id="grid"></span>
+                </div>
+            </section>
+
+    </section>
+    <section id="clear"></section>
+    <section id="pageFooter">
+        <footer id="fotters">
+            <span>&copy; All Rights Reserved.<span id="yearValue"></span><span>
+        </footer>
+
+    </section>
+</div>
+
+</body>
+</html>
