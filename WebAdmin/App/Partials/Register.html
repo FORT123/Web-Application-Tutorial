@@ -1,0 +1,56 @@
+<script>
+    $(document).ready(function () {
+        $("#registerLink").click(function () {
+            //alert("here");
+            $("#maincontent").load("App/Partials/Register.html");
+        });
+        $("#btnRegister").click(function () {
+           
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var email = $("#Email").val();
+            var mobile = $("#Mobile").val();
+            var uApp = new userApp();
+            uApp.init();
+            var isValid = uApp.registerUser(username, password,email,mobile);
+            if (isValid) {               
+                sessionStorage.loggedUsername = username;
+                $("#maincontent").load("App/Partials/userhome.html");
+            } else {
+                $("#spnErrorMessage").html("Invalid Credentials");
+            }
+        });
+    });
+</script>
+<div>
+    <form id="loginForm" name="loginForm">
+        <div>
+            <h2>Register</h2>
+        </div>
+        <fieldset>
+            <legend>Register details</legend>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"/>
+        </div>
+        <div>
+            <label for="password">Password:</label>&nbsp;
+            <input type="password" id="password" name="password"/>
+        </div>
+            <div>
+                <label for="email">Email:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" id="Email" name="email"/>
+            </div>
+            <div>
+                <label for="mobile">Mobile:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" id="Mobile" name="mobile"/>
+            </div>
+        <div>
+            <button type="button" id="btnRegister">Register</button>
+        </div>
+        <div style="display:none;">
+            <span id="spnErrorMessage"></span>
+        </div>
+        </fieldset>
+    </form>
+</div>

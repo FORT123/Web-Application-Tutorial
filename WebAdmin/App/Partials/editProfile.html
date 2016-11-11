@@ -1,0 +1,48 @@
+<script>
+    $(document).ready(function () {
+        $("#username").val(sessionStorage.loggedUsername);
+        $("#btnSubmit").click(function () {
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var email = $("#Email").val();
+            var mobile = $("#Mobile").val();
+            var uApp = new userApp();
+            uApp.init();
+            var isValid = uApp.editUserInfo(username, password,email,mobile);
+            if (isValid) {
+                sessionStorage.loggedUsername = username;
+                $("#maincontent").load("App/Partials/viewProfile.html");
+            } else {
+                $("#spnErrorMessage").html("Invalid Credentials");
+            }
+        });
+    });
+</script>
+<div>
+    <form id="loginForm" name="loginForm">
+        <div>
+            <h2>Edit Details</h2>
+        </div>
+        <fieldset>
+            <legend>Edit User details</legend>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username"/>
+            </div>
+            <div>
+                <label for="email">Email:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" id="Email" name="email"/>
+            </div>
+            <div>
+                <label for="mobile">Mobile:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" id="Mobile" name="mobile"/>
+            </div>
+            <div>
+                <button type="button" id="btnSubmit">Submit</button>
+            </div>
+            <div style="display:none;">
+                <span id="spnErrorMessage"></span>
+            </div>
+        </fieldset>
+    </form>
+</div>

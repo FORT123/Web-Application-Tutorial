@@ -1,0 +1,48 @@
+<script>
+    $(document).ready(function () {
+        $("#registerLink").click(function () {
+            //alert("here");
+            $("#maincontent").load("App/Partials/register.html");
+        });
+        $("#btnLogin").click(function () {
+           
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var uApp = new userApp();
+            uApp.init();
+            var isValid = uApp.validateUser(username, password);
+            //alert(isValid);
+            if (isValid) {               
+                sessionStorage.loggedUsername = username;
+                $("#maincontent").load("App/Partials/userhome.html");
+            } else {
+                $("#spnErrorMessage").html("Invalid Credentials !!");
+            }
+        });
+    });
+</script>
+<div>
+    <form id="loginForm" name="loginForm">
+        <div>
+            <h4>Login here...</h4>
+        </div>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"/>
+        </div>
+        <div>
+            <label for="password">Password:</label>&nbsp;
+            <input type="password" id="password" name="password"/>
+        </div>
+        <div>
+            <button type="button" id="btnLogin">Login</button>
+        </div>
+        <div>
+            <span id="spnErrorMessage"></span>
+        </div>
+        <div>
+            <span type="button" id="reg">Not Registered?</span>
+            <a href="javacript:void(0)" id="registerLink">Register Here</a>
+        </div>
+    </form>
+</div>

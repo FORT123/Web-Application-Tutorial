@@ -1,0 +1,32 @@
+<script>
+    $(document).ready(function () {
+        var uApp = new userApp();
+        uApp.init();
+        uApp.viewProfile(sessionStorage.loggedUsername);
+    });
+</script>
+<div>
+    <form id="loginForm" name="loginForm">
+        <div>
+            <h2>User Profile</h2>
+        </div>
+        <fieldset>
+            <legend>User Profile</legend>
+            <div>
+                <label for="username">Username:</label>
+               <span id="proUserName"></span>
+            </div>
+            <div>
+                <label for="email">Email:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="proUserEmail"></span>
+            </div>
+            <div>
+                <label for="mobile">Mobile:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span id="proUserMobile"></span>
+            </div>
+            <div style="display:none;">
+                <span id="spnErrorMessage"></span>
+            </div>
+        </fieldset>
+    </form>
+</div>

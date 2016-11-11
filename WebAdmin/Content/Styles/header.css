@@ -1,0 +1,53 @@
+/* Styles for page Header*/
+        #pageHeader{
+            height:200px;
+            border:1px solid #c0ed96;
+            border-radius:10px;
+            margin:10px;
+            padding:10px;
+
+         background-color: #b6ff00;
+        }
+
+        #pageHeader #header h1{
+            text-align:center;
+            font-family:cursive;
+            font-style:italic;
+            <!--text-shadow:20px 10px 3px #FF6F2B; -->
+            color:rgba(100%,150%,200,.7);
+        }
+        #topMenu ul{
+            float:left;
+        }
+        #topMenu ul li{
+            list-style:none;
+            display:inline;
+        }
+
+        #topMenu ul li a{
+            text-decoration:none;
+            text-transform:uppercase;
+        }
+
+        #topMenu ul li a:hover{
+            text-decoration:underline;
+            font-size:16px;
+        }
+
+#rightTopMenu ul{
+    float:right;
+}
+#rightTopMenu ul li{
+    list-style:none;
+    display:inline;
+}
+
+#rightTopMenu ul li a{
+    text-decoration:none;
+    text-transform:uppercase;
+}
+
+#rightTopMenu ul li a:hover{
+    text-decoration:underline;
+    font-size:16px;
+}
